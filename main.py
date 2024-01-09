@@ -30,7 +30,7 @@ def create_item(item: Item):
 @app.get("/items/{item_id}", response_model=Item)
 def read_item(item_id: int):
     cursor = conn.cursor()
-    query = "SELECT id, name, description,dates FROM items WHERE id=%s"
+    query = "SELECT * FROM items WHERE id=%s"
     cursor.execute(query, (item_id,))
     item = cursor.fetchone()
     cursor.close()
