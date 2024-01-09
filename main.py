@@ -30,13 +30,13 @@ def create_item(item: Item):
 @app.get("/items/{item_id}", response_model=Item)
 def read_item(item_id: int):
     cursor = conn.cursor()
-    query = "SELECT id, name, description FROM items WHERE id=%s"
+    query = "SELECT id, name, description,dates FROM items WHERE id=%s"
     cursor.execute(query, (item_id,))
     item = cursor.fetchone()
     cursor.close()
     if item is None:
         raise HTTPException(status_code=404, detail="Item not found")
-    return {"id": item[0], "name": item[1], "description": item[2]}
+    return {"id": item[0], "name": item[1], "description": item[2], "dates": item[3]}
 
 # Route to update an item
 @app.put("/items/{item_id}", response_model=Item)
