@@ -1,6 +1,6 @@
 from typing import Annotated
 import MySQLdb
-from fastapi import FastAPI, Form,HTTPException
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 db_config = {
     'host': 'localhost',
@@ -60,5 +60,4 @@ def delete_item(item_id: int):
 
 if __name__ == "__main__":
     import uvicorn
-
     uvicorn.run(app, host="localhost", port=8000)
